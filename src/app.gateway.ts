@@ -2,13 +2,13 @@ import { SubscribeMessage, WebSocketGateway, OnGatewayInit, WsResponse, OnGatewa
 import { Logger } from "@nestjs/common"
 import { Socket, Server } from "socket.io"
 
-@WebSocketGateway()
+@WebSocketGateway(3001, { path: "/websockets", namespace: "/" })
 export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
 
   @WebSocketServer() wss: Server;
   private logger: Logger = new Logger("AppGateway")
 
-
+  
   afterInit(server: any) {
     this.logger.log("initiated")
   }
